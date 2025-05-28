@@ -5,8 +5,15 @@ import {parseServerActionResponse} from "@/lib/utils";
 import slugify from "slugify";
 import {writeClient} from "@/sanity/lib/write-client";
 
-// TODO: fix types
-export const createStartup = async (state: any, form: any, pitch:string) => {
+type FormValueType = {
+  title: string
+  description: string
+  category: string
+  link: string
+  pitch: string
+}
+
+export const createStartup = async (state: FormData, form: FormValueType, pitch:string) => {
   const session = await auth()
 
   if(!session){
